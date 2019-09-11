@@ -1,0 +1,2 @@
+include ':app', ':CostTimePlugin'
+rootProject.name='KotlinPlugins'
