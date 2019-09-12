@@ -1,2 +1,2 @@
-include ':app', ':CostTimePlugin'
+include ':app', ':CostTimePlugin', ':cost'
 rootProject.name='KotlinPlugins'

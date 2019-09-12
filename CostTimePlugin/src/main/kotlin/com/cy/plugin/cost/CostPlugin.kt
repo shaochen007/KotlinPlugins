@@ -2,6 +2,7 @@ package com.cy.plugin.cost
 
 import com.android.build.api.transform.*
 import com.android.build.gradle.AppExtension
+import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.cy.plugin.cost.visitor.CostClassVisitor
 import org.apache.commons.codec.digest.DigestUtils
@@ -61,7 +62,7 @@ class CostTimePlugin : Transform(), Plugin<Project> {
         println("Hello gradle plugin with Kotlin")
         println("========================")
 
-        val android = project.extensions.getByType(AppExtension::class.java)
+        val android = project.extensions.getByType(BaseExtension::class.java)
         android.registerTransform(this)
     }
 
@@ -77,6 +78,8 @@ class CostTimePlugin : Transform(), Plugin<Project> {
 
         // 遍历 inputs
         inputs?.forEach { input ->
+            println("input.directoryInputs: ${input.directoryInputs}")
+
             input.directoryInputs.forEach {
                 handleDirectoryInputs(it)
 
@@ -99,6 +102,7 @@ class CostTimePlugin : Transform(), Plugin<Project> {
      * 遍历 DirectoryInputs
      */
     private fun handleDirectoryInputs(directoryInput: DirectoryInput?) {
+        println("into handleDirectoryInputs, isDirectory = ${directoryInput?.file?.isDirectory}")
         if (directoryInput?.file?.isDirectory == true) {
             directoryInput.file?.listFiles { file ->
                 val name = file.name

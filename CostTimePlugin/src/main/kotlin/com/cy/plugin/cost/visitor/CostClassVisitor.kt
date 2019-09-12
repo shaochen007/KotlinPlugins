@@ -1,6 +1,6 @@
 package com.cy.plugin.cost.visitor
 
-import com.cy.plugin.cost.annotation.Cost
+import com.cy.cost.annotation.Cost
 import org.objectweb.asm.*
 import org.objectweb.asm.commons.AdviceAdapter
 
